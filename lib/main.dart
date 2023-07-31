@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'footer.dart';
+import 'home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: const Scaffold(
+        body: Home(),
         bottomNavigationBar: Footer(),
       ),
     );
