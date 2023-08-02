@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 
+class Product {
+  final String name;
+  final int price;
+
+  Product(this.name, this.price);
+}
+
 class Home extends StatefulWidget {
   Home({super.key});
 
@@ -12,18 +19,18 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    const data = [
-      Text('0'),
-      Text('1'),
-      Text('2'),
-      Text('3'),
-      Text('4'),
-      Text('5'),
-      Text('6'),
-      Text('8'),
-      Text('9'),
-      Text('10'),
+    final data = [
+      Product('商品A', 100),
+      Product('商品B', 200),
+      Product('商品C', 300),
+      Product('商品D', 400),
+      Product('商品E', 500),
+      Product('商品F', 600),
+      Product('商品G', 800),
+      Product('商品H', 900),
+      Product('商品I', 1000),
     ];
+
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -63,9 +70,9 @@ class _HomeState extends State<Home> {
             child: ListView(
               children: data.asMap().entries.map((entry) {
                 int index = entry.key;
-                Widget item = entry.value;
+                Product product = entry.value;
                 Color color = index % 2 == 0 ? Colors.yellow : Colors.blue;
-                return _buildColorfulBox(color, item);
+                return _buildColorfulBox(color, product.price, product.name);
               }).toList(),
             ),
           ),
@@ -92,12 +99,61 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget _buildColorfulBox(Color color, Widget child) {
+  Widget _buildColorfulBox(Color color, int price, String productName) {
     return Container(
-      color: color,
-      height: 100,
-      child: Center(
-        child: child,
+      decoration: const BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: Colors.black, //枠線の色
+            width: 1, //枠線の太さ
+          ),
+        ),
+      ),
+      child: Stack(
+        children: [
+          Row(
+            children: [
+              Container(
+                color: Colors.grey,
+                width: 150,
+                height: 100,
+                alignment: Alignment.center,
+                child: const Text(
+                  '商品画像',
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  color: color,
+                  height: 100,
+                ),
+              ),
+            ],
+          ),
+          Positioned.fill(
+            child: Align(
+              alignment: Alignment.center,
+              child: Text(
+                productName,
+                style: const TextStyle(fontSize: 20),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+          Positioned(
+            top: 38,
+            right: 50,
+            child: Align(
+              alignment: Alignment.center,
+              child: Text(
+                '$price円',
+                style: const TextStyle(fontSize: 16),
+              ),
+              // ),
+            ),
+          ),
+        ],
       ),
     );
   }
