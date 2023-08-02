@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const Scaffold(
+      home: Scaffold(
         body: Home(),
         bottomNavigationBar: Footer(),
       ),

@@ -1,18 +1,32 @@
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  Home({super.key});
 
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
+  String title = 'サンプル百貨店';
+
   @override
   Widget build(BuildContext context) {
+    const data = [
+      Text('0'),
+      Text('1'),
+      Text('2'),
+      Text('3'),
+      Text('4'),
+      Text('5'),
+      Text('6'),
+      Text('8'),
+      Text('9'),
+      Text('10'),
+    ];
     return Scaffold(
       appBar: AppBar(
-        title: const Text('サンプル百貨店'),
+        title: Text(title),
         backgroundColor: Colors.pink,
         actions: [
           Padding(
@@ -26,94 +40,64 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        // RowをラップしたSingleChildScrollView
-        scrollDirection: Axis.horizontal, // 横スクロールを有効にする
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Container(
-              padding: const EdgeInsets.only(left: 12, right: 12),
-              margin: const EdgeInsets.only(top: 10, bottom: 10),
-              child: const Text(
-                '限定',
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch, // 横幅いっぱいに広げる
+        children: [
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _buildMenuItem('限定'),
+                _buildMenuItem('目玉商品'),
+                _buildMenuItem('人気'),
+                _buildMenuItem('先行'),
+                _buildMenuItem('プレ先行'),
+                _buildMenuItem('クーポン'),
+                _buildMenuItem('抽選'),
+                _buildMenuItem('履歴'),
+              ],
             ),
-            Container(
-              padding: const EdgeInsets.only(left: 12, right: 12),
-              margin: const EdgeInsets.only(top: 10, bottom: 10),
-              child: const Text(
-                '目玉商品',
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
+          ),
+          Expanded(
+            child: ListView(
+              children: data.asMap().entries.map((entry) {
+                int index = entry.key;
+                Widget item = entry.value;
+                Color color = index % 2 == 0 ? Colors.yellow : Colors.blue;
+                return _buildColorfulBox(color, item);
+              }).toList(),
             ),
-            Container(
-              padding: const EdgeInsets.only(left: 12, right: 12),
-              margin: const EdgeInsets.only(top: 10, bottom: 10),
-              child: const Text(
-                '人気',
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.only(left: 12, right: 12),
-              margin: const EdgeInsets.only(top: 10, bottom: 10),
-              child: const Text(
-                '先行',
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.only(left: 12, right: 12),
-              margin: const EdgeInsets.only(top: 10, bottom: 10),
-              child: const Text(
-                'プレ先行',
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.only(left: 12, right: 12),
-              margin: const EdgeInsets.only(top: 10, bottom: 10),
-              child: const Text(
-                'クーポン',
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.only(left: 12, right: 12),
-              margin: const EdgeInsets.only(top: 10, bottom: 10),
-              child: const Text(
-                '抽選',
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.only(left: 12, right: 12),
-              margin: const EdgeInsets.only(top: 10, bottom: 10),
-              child: const Text(
-                '履歴',
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
-            ),
-          ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMenuItem(String title) {
+    return InkWell(
+      onTap: () {
+        // タップされたときの処理を記述
+      },
+      child: Container(
+        padding: const EdgeInsets.only(left: 12, right: 12),
+        margin: const EdgeInsets.only(top: 10, bottom: 10),
+        child: Text(
+          title,
+          style: const TextStyle(
+            fontSize: 18,
+          ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildColorfulBox(Color color, Widget child) {
+    return Container(
+      color: color,
+      height: 100,
+      child: Center(
+        child: child,
       ),
     );
   }
