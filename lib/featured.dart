@@ -1,19 +1,23 @@
-// 特集
-// WebPageを埋め込むので、stateless
 import 'package:flutter/material.dart';
 
 class Featured extends StatelessWidget {
-  const Featured({super.key});
+  const Featured({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('title'),
         backgroundColor: Colors.pink,
+        toolbarHeight: 100,
+        title: const Center(
+          child: Padding(
+            padding: EdgeInsets.only(left: 50.0, top: 50.0),
+            child: Text('特集一覧'),
+          ),
+        ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 5.0),
+            padding: const EdgeInsets.only(top: 20.0, right: 5.0),
             child: IconButton(
               icon: const Icon(Icons.shopping_cart),
               onPressed: () {
@@ -23,7 +27,9 @@ class Featured extends StatelessWidget {
           ),
         ],
       ),
-      body: const Text('特集'),
+      body: const Center(
+        child: Text('特集一覧の内容をここに表示する'),
+      ),
     );
   }
 }
