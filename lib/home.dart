@@ -8,7 +8,7 @@ class Product {
 }
 
 class Home extends StatefulWidget {
-  Home({super.key});
+  const Home({super.key});
 
   @override
   State<Home> createState() => _HomeState();
@@ -33,11 +33,19 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
         backgroundColor: Colors.pink,
+        toolbarHeight: 100,
+        // タイトルをもう少し下に表示するためにCenterウィジェットでラップし、alignmentを調整
+        title: Center(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 50.0, top: 20.0),
+            child: Text(title),
+          ),
+        ),
+        // AppBarの高さを80に設定
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 5.0),
+            padding: const EdgeInsets.only(top: 20.0, right: 5.0),
             child: IconButton(
               icon: const Icon(Icons.shopping_cart),
               onPressed: () {
@@ -78,6 +86,7 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
+      // bottomNavigationBar: const Footer(),
     );
   }
 

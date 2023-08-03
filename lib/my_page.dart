@@ -1,8 +1,15 @@
+// マイページ
+//　インタラクションで動的に stateful
 import 'package:flutter/material.dart';
 
-class Search extends StatelessWidget {
-  const Search({super.key});
+class MyPage extends StatefulWidget {
+  const MyPage({super.key});
 
+  @override
+  State<MyPage> createState() => _MyPageState();
+}
+
+class _MyPageState extends State<MyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +28,7 @@ class Search extends StatelessWidget {
           ),
         ],
       ),
-      body: const Text('検索'),
+      body: const Text('マイページ'),
     );
   }
 }
