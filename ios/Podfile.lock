@@ -1,12 +1,13 @@
 PODS:
-  - applovin_max (1.0.8):
-    - AppLovinSDK (= 11.4.3)
+  - applovin_max (3.1.1):
+    - AppLovinSDK (= 11.11.2)
     - Flutter
-  - AppLovinSDK (11.4.3)
+  - AppLovinSDK (11.11.2)
   - Flutter (1.0.0)
 
 DEPENDENCIES:
   - applovin_max (from `.symlinks/plugins/applovin_max/ios`)
+  - AppLovinSDK (= 11.11.2)
   - Flutter (from `Flutter`)
 
 SPEC REPOS:
@@ -20,10 +21,10 @@ EXTERNAL SOURCES:
     :path: Flutter
 
 SPEC CHECKSUMS:
-  applovin_max: bfa00521fa9789f68f17352e7b8828c7d262c867
-  AppLovinSDK: 221dfbdff620be0ff227ed5b018b97b1f3d15713
+  applovin_max: a24c3fa33f968c679886f7f4573bfca00443eace
+  AppLovinSDK: 86ac2d11e3fda1d2cb5b235fb8a4bbd39ab0ebee
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
 
-PODFILE CHECKSUM: 70d9d25280d0dd177a5f637cdb0f0b0b12c6a189
+PODFILE CHECKSUM: 9f7895aafe9ca732a8993cbe2a8fb4afd59acb5c
 
 COCOAPODS: 1.12.1

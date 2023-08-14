@@ -1,7 +1,30 @@
+import 'dart:io' show Platform;
+
+import 'package:applovin_max/applovin_max.dart';
 import 'package:flutter/material.dart';
 
-class Search extends StatelessWidget {
-  const Search({super.key});
+class Search extends StatefulWidget {
+  const Search({Key? key}) : super(key: key);
+
+  @override
+  _SearchState createState() => _SearchState();
+}
+
+class _SearchState extends State<Search> {
+  final String _bannerAdUnitId =
+      Platform.isAndroid ? "af9668fd3e210dfe" : "d99ca2eff65ce8fd";
+
+  @override
+  void initializeBannerAds() {
+    // Banners are automatically sized to 320x50 on phones and 728x90 on tablets
+    AppLovinMAX.createBanner(_bannerAdUnitId, AdViewPosition.bottomCenter);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initializeBannerAds();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -142,15 +165,28 @@ class Search extends StatelessWidget {
                 ),
               ],
             ),
-            // ここに新しいコンテナを追加
-            Container(
-              color: Colors.yellow, // 任意の色を設定
-              height: 100,
-              width: double.infinity,
-              child:
-                  const Center(child: Text('広告枠', textAlign: TextAlign.center)),
+            MaxAdView(
+              adUnitId: _bannerAdUnitId,
+              adFormat: AdFormat.banner,
+              listener: AdViewAdListener(
+                onAdLoadedCallback: (ad) {
+                  // 広告が読み込まれたときの処理
+                },
+                onAdLoadFailedCallback: (adUnitId, error) {
+                  // 広告の読み込みが失敗したときの処理
+                },
+                onAdClickedCallback: (ad) {
+                  // 広告がクリックされたときの処理
+                },
+                onAdExpandedCallback: (ad) {
+                  // 広告が展開されたときの処理
+                },
+                onAdCollapsedCallback: (ad) {
+                  // 広告が閉じられたときの処理
+                },
+              ),
             ),
-            const SizedBox(height: 10), // 要素との間隔を設定
+            const SizedBox(height: 10),
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
