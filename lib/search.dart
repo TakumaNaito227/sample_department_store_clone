@@ -171,18 +171,23 @@ class _SearchState extends State<Search> {
               listener: AdViewAdListener(
                 onAdLoadedCallback: (ad) {
                   // 広告が読み込まれたときの処理
+                  print('広告が読み込まれたときの処理');
                 },
                 onAdLoadFailedCallback: (adUnitId, error) {
                   // 広告の読み込みが失敗したときの処理
+                  print('広告の読み込みが失敗したときの処理');
                 },
                 onAdClickedCallback: (ad) {
                   // 広告がクリックされたときの処理
+                  print('広告がクリックされたときの処理');
                 },
                 onAdExpandedCallback: (ad) {
                   // 広告が展開されたときの処理
+                  print('広告が展開されたときの処理');
                 },
                 onAdCollapsedCallback: (ad) {
                   // 広告が閉じられたときの処理
+                  print('広告が閉じられたときの処理');
                 },
               ),
             ),
