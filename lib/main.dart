@@ -59,7 +59,8 @@ class MyApp extends StatelessWidget {
 
   Future<Map?> initializeAppLovinSdk() async {
     try {
-      return await AppLovinMAX.initialize("YOUR_SDK_KEY_HERE");
+      return await AppLovinMAX.initialize(
+          "gDGoBe0xge_SkvPvT1ReUxgR1EPNApcT3y0_3WOIM66a2bD4MofTGDEX7UW28uyksndDt5uwHSB9ukck7w2xqB");
     } catch (error) {
       print("Error initializing AppLovin SDK: $error");
       return null;

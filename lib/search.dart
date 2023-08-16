@@ -17,7 +17,7 @@ class _SearchState extends State<Search> {
   @override
   void initializeBannerAds() {
     // Banners are automatically sized to 320x50 on phones and 728x90 on tablets
-    AppLovinMAX.createBanner(_bannerAdUnitId, AdViewPosition.bottomCenter);
+    AppLovinMAX.createBanner(_bannerAdUnitId, AdViewPosition.topCenter);
   }
 
   @override
@@ -165,9 +165,13 @@ class _SearchState extends State<Search> {
                 ),
               ],
             ),
+            // AppLovinMAX.showBanner(_bannerAdUnitId);
+            // AppLovinMAX.stopBannerAutoRefresh(_bannerAdUnitId);
             MaxAdView(
               adUnitId: _bannerAdUnitId,
               adFormat: AdFormat.banner,
+              // 広告の高さを指定
+              isAutoRefreshEnabled: false,
               listener: AdViewAdListener(
                 onAdLoadedCallback: (ad) {
                   // 広告が読み込まれたときの処理
@@ -176,6 +180,7 @@ class _SearchState extends State<Search> {
                 onAdLoadFailedCallback: (adUnitId, error) {
                   // 広告の読み込みが失敗したときの処理
                   print('広告の読み込みが失敗したときの処理');
+                  print(error);
                 },
                 onAdClickedCallback: (ad) {
                   // 広告がクリックされたときの処理
