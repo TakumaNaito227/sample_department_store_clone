@@ -27,11 +27,6 @@ class _FooterState extends State<Footer> {
 
   @override
   Widget build(BuildContext context) {
-    print(_pages);
-    print(_currentIndex);
-    print(_pages[_currentIndex]);
-    print('===========================');
-
     return Scaffold(
       body: _pages[_currentIndex], // 現在の画面を表示する
       bottomNavigationBar: BottomNavigationBar(

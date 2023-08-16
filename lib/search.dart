@@ -12,7 +12,7 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> {
   final String _bannerAdUnitId =
-      Platform.isAndroid ? "af9668fd3e210dfe" : "d99ca2eff65ce8fd";
+      Platform.isAndroid ? "1784bfbb83e237ac" : "e95cda7c04d436dd";
 
   @override
   void initializeBannerAds() {
