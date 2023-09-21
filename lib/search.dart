@@ -165,12 +165,9 @@ class _SearchState extends State<Search> {
                 ),
               ],
             ),
-            // AppLovinMAX.showBanner(_bannerAdUnitId);
-            // AppLovinMAX.stopBannerAutoRefresh(_bannerAdUnitId);
             MaxAdView(
               adUnitId: _bannerAdUnitId,
               adFormat: AdFormat.banner,
-              // 広告の高さを指定
               isAutoRefreshEnabled: false,
               listener: AdViewAdListener(
                 onAdLoadedCallback: (ad) {
@@ -201,16 +198,49 @@ class _SearchState extends State<Search> {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: 20,
-              itemBuilder: (context, index) => Container(
-                height: 50,
-                color: Colors.grey,
-                child: Center(
-                  child: Text(
-                    'ダミーデータ${index + 1}',
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
+              itemBuilder: (context, index) {
+                if (index + 1 == 10) {
+                  return MaxAdView(
+                    adUnitId: _bannerAdUnitId,
+                    adFormat: AdFormat.banner,
+                    isAutoRefreshEnabled: false,
+                    listener: AdViewAdListener(
+                      onAdLoadedCallback: (ad) {
+                        // 広告が読み込まれたときの処理
+                        print('広告が読み込まれたときの処理');
+                      },
+                      onAdLoadFailedCallback: (adUnitId, error) {
+                        // 広告の読み込みが失敗したときの処理
+                        print('広告の読み込みが失敗したときの処理');
+                        print(error);
+                      },
+                      onAdClickedCallback: (ad) {
+                        // 広告がクリックされたときの処理
+                        print('広告がクリックされたときの処理');
+                      },
+                      onAdExpandedCallback: (ad) {
+                        // 広告が展開されたときの処理
+                        print('広告が展開されたときの処理');
+                      },
+                      onAdCollapsedCallback: (ad) {
+                        // 広告が閉じられたときの処理
+                        print('広告が閉じられたときの処理');
+                      },
+                    ),
+                  );
+                } else {
+                  return Container(
+                    height: 50,
+                    color: Colors.grey,
+                    child: Center(
+                      child: Text(
+                        'ダミーデータ${index + 1}',
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  );
+                }
+              },
             ),
           ],
         ),
